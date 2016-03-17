@@ -6,13 +6,14 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import core.db.DataBase;
 import core.mvc.Controller;
+import next.dao.UserDao;
 import next.model.User;
 
 public class CreateUserController implements Controller {
     private static final Logger log = LoggerFactory.getLogger(CreateUserController.class);
-
+	UserDao userdao = new UserDao();
+    
 	@Override
 	public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
 		User user = new User(
@@ -22,7 +23,7 @@ public class CreateUserController implements Controller {
 				req.getParameter("email"));
 		log.debug("User : {}", user);
 		
-		DataBase.addUser(user);
+		userdao.insert(user);
 		return "redirect:/";
 	}
 }

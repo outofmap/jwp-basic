@@ -36,12 +36,62 @@ public class UserDao {
 	}
 	
 	public void update(User user) throws SQLException {
-		// TODO 구현 필요함.
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+			con = ConnectionManager.getConnection();
+			String sql = "UPDATE USERS set password = ?, name = ?, email = ? WHERE userId = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, user.getPassword());
+			pstmt.setString(2, user.getName());
+			pstmt.setString(3, user.getEmail());
+			pstmt.setString(4, user.getUserId());
+			
+			pstmt.executeUpdate();
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+		return ;
 	}
 	
 	public List<User> findAll() throws SQLException {
-		// TODO 구현 필요함.
-		return new ArrayList<User>();
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<User> userlist = new ArrayList<User>();
+		try {
+			con = ConnectionManager.getConnection();
+			String sql = "SELECT userId, password, name, email FROM users";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while(rs.next()){
+				String userId = rs.getString("userId");
+				String password = rs.getString("password");
+				String name = rs.getString("name");
+				String email = rs.getString("email");
+				
+				User user = new User(userId,password,name,email);
+				userlist.add(user);
+			}
+			
+		} finally {
+			if (pstmt != null) {
+				pstmt.close();
+			}
+			
+			if (con != null) {
+				con.close();
+			}
+		}
+		
+		return userlist;
 	}
 
 	public User findByUserId(String userId) throws SQLException {
