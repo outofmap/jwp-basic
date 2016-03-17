@@ -40,7 +40,7 @@
 							<div class="auth-info">
 								<i class="icon-add-comment"></i>
 								<span class="time">2016-01-05 18:47</span>
-								<a href="./user/profile.html" class="author">김문수</a>
+								<a href="./user/profile.html" class="author">송희송희</a>
 							</div>
 							<div class="reply" title="댓글">
 								<i class="icon-reply"></i>
