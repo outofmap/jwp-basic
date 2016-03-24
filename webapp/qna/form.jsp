@@ -59,8 +59,8 @@
         <div class="collapse navbar-collapse" id="navbar-collapse2">
             <ul class="nav navbar-nav navbar-right">
                 <li class="active"><a href="../index.html">Posts</a></li>
-                <li><a href="../user/login.html" role="button">ë¡ê·¸ì¸</a></li>
-                <li><a href="../user/form.html" role="button">íìê°ì</a></li>
+                <li><a href="../user/login.html" role="button">로그인</a></li>
+                <li><a href="../user/form.html" role="button">회원가입</a></li>
                 <li><a href="#" role="button">ë¡ê·¸ìì</a></li>
                 <li><a href="#" role="button">ê°ì¸ì ë³´ìì </a></li>
             </ul>
