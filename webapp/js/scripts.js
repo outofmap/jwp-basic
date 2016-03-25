@@ -9,17 +9,19 @@ String.prototype.format = function() {
 };
 
 $(".answerWrite input[type=submit]").click(addAnswer);
+$(".qna-comment").on("click",".link-delete-article",deleteAnswer);
+
 
 function addAnswer(e) {
 	e.preventDefault();
-	console.log("in");
+	//console.log("in");
 	var queryString = $("form[name=answer]").serialize();
 	console.log(queryString);
 	$.ajax({
 		type: 'post',
 		url: '/api/qna/addAnswer',
 		data: queryString,
-		dataType: 'json',
+		dataType: 'json'
 		//error: onError,
 		//success: onSuccess
 	}).done(function (data) {
@@ -30,6 +32,29 @@ function addAnswer(e) {
 		//alert("error");
 	});
 }
+
+ function deleteAnswer(e) {
+ 	e.preventDefault();
+ 	var button = $(this);
+ 	var url = $(this).closest("form").serialize();
+ 	
+ 	console.log(url);
+ 	$.ajax({
+ 		type:'post',
+ 		url: '/api/qna/deleteAnswer',
+ 		data: url,
+ 		dataType: 'json'
+ 	}).done(function(json,status) {
+ 		console.log(json);
+ 		//json.status가 뭔가요?
+ 		if(json.status){
+ 			button.closest("article").remove();
+ 		}
+ 	}).fail(function () {
+		onError(); 		
+ 	})
+ }
+
 
 function onSuccess (json,status) {
 	console.log("성공");
@@ -42,4 +67,7 @@ function onSuccess (json,status) {
 function onError (xhr,status) {
 	alert("error");
 }
+//api/qna/list get요청으로 json으로 list받기
+function showQnaList(e){
 
+}

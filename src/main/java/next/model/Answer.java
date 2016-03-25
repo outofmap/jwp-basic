@@ -13,6 +13,9 @@ public class Answer {
 
 	private long questionId;
 	
+	public Answer() {
+		// TODO Auto-generated constructor stub
+	}
 	public Answer(String writer, String contents, long questionId) {
 		this(0, writer, contents, new Date(), questionId);
 	}
@@ -25,6 +28,7 @@ public class Answer {
 		this.questionId = questionId;
 	}
 	
+
 	public long getAnswerId() {
 		return answerId;
 	}
