@@ -36,13 +36,13 @@ function addAnswer(e) {
  function deleteAnswer(e) {
  	e.preventDefault();
  	var button = $(this);
- 	var url = $(this).closest("form").serialize();
+ 	var answer = $(this).closest("form").serialize();
  	
  	console.log(url);
  	$.ajax({
  		type:'post',
  		url: '/api/qna/deleteAnswer',
- 		data: url,
+ 		data: answer,
  		dataType: 'json'
  	}).done(function(json,status) {
  		console.log(json);
