@@ -20,7 +20,7 @@ function onSuccess(json, status) {
 	var answer = json.answer;
 	var question = json.question;
 	var countOfComment = question.countOfComment;
-	console.log(countOfComment);
+	// console.log(countOfComment);
 	var answerTemplate = $("#answerTemplate").html();
 	var template = answerTemplate.format(answer.writer, new Date(
 			answer.createdDate), answer.contents, answer.answerId,
@@ -44,22 +44,19 @@ $(".qna-comment").on("click", ".form-delete", deleteAnswer);
 function deleteAnswer(e) {
 	e.preventDefault();
 	console.log("in");
+
 	var delButton = $(e.target);
 	var queryString = delButton.closest("form").serialize();
-
+	//deltarget앞에 $안쓰면 동작을 안하는데, 그냥 문법인줄알았는데 코드에 영향이 있다니!!!
+	var $deltarget = $(e.target).closest("article");
 	$.ajax({
 		type : 'post',
 		url : "/api/qna/deleteAnswer",
 		data : queryString, 
-		dataType : 'json'
-	}).done(function(json, status) {
-		console.log(json.answerId);
-		var answerId = json.answerId;
-		//selector로 delButton가져오기 실패.
-		if (json.status) {
-			delButton.closest("article").remove();
+		dataType : 'json',
+		success : function (data, status, deltarget) {
+			console.log("haha");
+			$deltarget.remove();
 		}
-	}).fail(function(xhr, status) {
-		onError(xhr, status);
 	});
 };

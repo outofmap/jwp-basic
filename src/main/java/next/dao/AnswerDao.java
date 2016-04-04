@@ -14,7 +14,7 @@ import core.jdbc.PreparedStatementCreator;
 import core.jdbc.RowMapper;
 
 public class AnswerDao {
-	private static AnswerDao answerDao;
+	private static AnswerDao answerDao = new AnswerDao();
 	private AnswerDao() {
 	}
 

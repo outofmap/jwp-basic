@@ -15,7 +15,7 @@ import core.jdbc.PreparedStatementCreator;
 import core.jdbc.RowMapper;
 
 public class QuestionDao {
-	private static QuestionDao questionDao;
+	private static QuestionDao questionDao = new QuestionDao();
 
 	private QuestionDao() {
 	}
@@ -36,7 +36,6 @@ public class QuestionDao {
 			}
 
 		};
-
 		return jdbcTemplate.query(sql, rm);
 	}
 
