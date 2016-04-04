@@ -21,6 +21,13 @@ public class UserDao {
 
 		return jdbcTemplate.queryForObject(sql, new UserRowMapper(), userId);
 	}
+	
+	public User findByName(String name) {
+		JdbcTemplate jdbcTemplate = JdbcTemplate.getInstance();
+		String sql = "SELECT userId, password, name, email FROM USERS WHERE name=?";
+
+		return jdbcTemplate.queryForObject(sql, new UserRowMapper(), name);
+	}
 
 	public List<User> findAll() throws SQLException {
 		JdbcTemplate jdbcTemplate = JdbcTemplate.getInstance();

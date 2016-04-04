@@ -57,6 +57,30 @@ public class Question {
 		return countOfComment;
 	}
 
+	public void setQuestionId(long questionId) {
+		this.questionId = questionId;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public void setCountOfComment(int countOfComment) {
+		this.countOfComment = countOfComment;
+	}
+
 	@Override
 	public String toString() {
 		return "Question [questionId=" + questionId + ", writer=" + writer

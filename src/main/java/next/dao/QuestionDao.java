@@ -82,4 +82,12 @@ public class QuestionDao {
 		return findById(questionId);
 	}
 
+	public Question update(Question updateQuestion) {
+		JdbcTemplate jdbcTemplate = JdbcTemplate.getInstance();
+		String sql = "UPDATE QUESTIONS SET title = ?, contents = ? " + "WHERE questionId = ?";
+		jdbcTemplate.update(sql, updateQuestion.getTitle(), updateQuestion.getContents(), updateQuestion.getQuestionId());
+		return findById(updateQuestion.getQuestionId());
+		
+	}
+
 }
