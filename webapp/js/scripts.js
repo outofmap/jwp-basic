@@ -54,7 +54,10 @@ function deleteAnswer(e) {
 		url : "/api/qna/deleteAnswer",
 		data : queryString, 
 		dataType : 'json',
-		success : function (data, status, deltarget) {
+		success : function (data, status) {
+			//e;
+			//delButton;
+			//queryString;
 			console.log("haha");
 			$deltarget.remove();
 		}
